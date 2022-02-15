@@ -1,0 +1,1 @@
+icons gotten from https://github.com/markFieldman/openweather-icons-to-emoji/blob/master/icons.json
