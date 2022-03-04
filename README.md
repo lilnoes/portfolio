@@ -28,7 +28,7 @@ Read more [here](https://leonema.vercel.app/projects/slack-crypto-charts)
 Codes available [here](/slack_charts)
 
 ## 4. Telegram fetch weather
-Telegram bot to tell you current api and 10 hour forecast
+Telegram bot to tell you current weather and 10 hour forecast
 ![Telegram weather bot](images/telegramweather.png)
 
 Read more [here](https://leonema.vercel.app/projects/get-current-weather-conditions-and-forecast-telegram-bot)
