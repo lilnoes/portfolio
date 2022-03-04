@@ -41,29 +41,31 @@ public class Circle extends javax.swing.JFrame implements GLEventListener {
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 3, 14)); // NOI18N
+        jLabel1.setText("Computer Graphics - Swing");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addGap(26, 26, 26)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addComponent(jLabel1)
-                .addContainerGap(179, Short.MAX_VALUE))
         );
 
         pack();
@@ -118,7 +120,9 @@ public class Circle extends javax.swing.JFrame implements GLEventListener {
     public void display(GLAutoDrawable glad) {
         double radius = 0.75;
         GL2 gl = glad.getGL().getGL2();
+        gl.glClearColor(1, 1, 1,1);
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
+//        gl.glClearColor(1, 1, 1,1);
 
         gl.glColor3f(0, 0, 1);
         gl.glPointSize(5f);
@@ -146,6 +150,7 @@ public class Circle extends javax.swing.JFrame implements GLEventListener {
         GLCanvas glcanvas = CanvasUtils.getGLCanvas();
         glcanvas.addGLEventListener(this);
         jPanel1.add(glcanvas);
+        jPanel1.setSize(600, 600);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
