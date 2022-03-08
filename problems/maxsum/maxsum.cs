@@ -4,27 +4,27 @@ using System.Collections.Generic;
 
 class MaxSum
 {
-    static Dictionary<ValueTuple<int, int>, long> lookup = new Dictionary<ValueTuple<int, int>, long>();
-    static long count = 0;
     static void Main(string[] args)
     {
         long ans = 0;
         List<List<int>> numbers = new List<List<int>>();
         foreach (string line in File.ReadLines("input.txt")) numbers.Add(getNumbers(line));
 
+        //initialise a lookup table filled with 0
         long[][] table = new long[numbers.Count][];
         for (int i = 0; i < numbers.Count; ++i) table[i] = new long[numbers[i].Count];
+
+        //first entry is the top number
         table[0][0] = numbers[0][0];
+
+        //propagate sum starting from top to last second row
         for (int i = 0; i < numbers.Count - 1; ++i) propagateSum(numbers, table, i);
+
+        //answer is the maximum of numbers in last row
         foreach (long num in table[numbers.Count - 1]) ans = Math.Max(ans, num);
+
+        //if ans is -1 or 0 -> No answer found.
         Console.WriteLine(ans);
-
-
-
-        // long downSum = dfs(numbers, 1, 0, numbers[0][0]);
-        // long rightSum = dfs(numbers, 1, 1, numbers[0][0]);
-        // ans = Math.Max(downSum, rightSum);
-        // Console.Write(ans);
     }
 
     //propagate sum down, left and right
@@ -67,20 +67,6 @@ class MaxSum
         List<int> list = new List<int>();
         foreach (string num in line.Split(' ')) list.Add(int.Parse(num));
         return list;
-    }
-
-    static long dfs(List<List<int>> numbers, int i, int j, int sum)
-    {
-        Console.WriteLine(count++);
-        if (i >= numbers.Count || j < 0 || j >= numbers[i].Count) return -1;
-        if (isPrime(numbers[i][j])) return -1;
-        if (i == numbers.Count - 1) return sum + numbers[i][j];
-        long leftSum = dfs(numbers, i + 1, j - 1, sum + numbers[i][j]);
-        long downSum = dfs(numbers, i + 1, j, sum + numbers[i][j]);
-        long rightSum = dfs(numbers, i + 1, j + 1, sum + numbers[i][j]);
-        long max = Math.Max(Math.Max(leftSum, downSum), rightSum);
-        lookup[(i, j)] = max;
-        return max;
     }
 
     static bool isPrime(int num)
