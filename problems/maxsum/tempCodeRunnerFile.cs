@@ -1,5 +1,4 @@
-  long[][] table = new long[numbers.Count][];
-        for (int i = 0; i < numbers.Count; ++i) table[i] = new long[numbers[i].Count];
-        for (int i = 0; i < numbers.Count - 1; ++i) propagateSum(numbers, table, i);
-        foreach (long num in table[numbers.Count - 1]) ans = Math.Max(ans, num);
-        Console.WriteLine(ans);
+   long downSum = dfs(numbers, 1, 0, numbers[0][0]);
+        long rightSum = dfs(numbers, 1, 1, numbers[0][0]);
+        ans = Math.Max(downSum, rightSum);
+        Console.Write(ans);

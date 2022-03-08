@@ -27,6 +27,7 @@ class MaxSum
         // Console.Write(ans);
     }
 
+    //propagate sum down, left and right
     static void propagateSum(List<List<int>> numbers, long[][] table, int index)
     {
         for (int j = 0; j < numbers[index].Count; ++j)
@@ -60,6 +61,7 @@ class MaxSum
         }
     }
 
+    //parse a line into an array of numbers
     static List<int> getNumbers(string line)
     {
         List<int> list = new List<int>();
@@ -70,9 +72,8 @@ class MaxSum
     static long dfs(List<List<int>> numbers, int i, int j, int sum)
     {
         Console.WriteLine(count++);
-        // if (lookup.ContainsKey((i, j))) return lookup[(i, j)];
         if (i >= numbers.Count || j < 0 || j >= numbers[i].Count) return -1;
-        if (!isNotPrime(numbers[i][j])) return -1;
+        if (isPrime(numbers[i][j])) return -1;
         if (i == numbers.Count - 1) return sum + numbers[i][j];
         long leftSum = dfs(numbers, i + 1, j - 1, sum + numbers[i][j]);
         long downSum = dfs(numbers, i + 1, j, sum + numbers[i][j]);
@@ -82,17 +83,11 @@ class MaxSum
         return max;
     }
 
-    //added this to avoid double negation which is confusing
     static bool isPrime(int num)
     {
-        return !isNotPrime(num);
-    }
-
-    static bool isNotPrime(int num)
-    {
-        if (num == 2 || num == 1) return false;
-        if (num % 2 == 0) return true;
-        for (int i = 3; i < num / 2; i += 2) if (num % i == 0) return true;
-        return false;
+        if (num == 2 || num == 1) return true;
+        if (num % 2 == 0) return false;
+        for (int i = 3; i < num / 2; i += 2) if (num % i == 0) return false;
+        return true;
     }
 }
