@@ -66,7 +66,8 @@ public class MaxSum
                 table[index + 1][j - 1] = Math.Max(table[index + 1][j - 1], leftSum);
             }
 
-            if (j != numbers[index].Count - 1 && isPrime(numbers[index + 1][j + 1])) table[index + 1][j + 1] = -1;
+            //pyramid has always down right(except last row), no need to check
+            if (isPrime(numbers[index + 1][j + 1])) table[index + 1][j + 1] = -1;
             else
             {
                 long rightSum = table[index][j] + numbers[index + 1][j + 1];
